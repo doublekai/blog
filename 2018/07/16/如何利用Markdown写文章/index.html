@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 如何利用Markdown写文章 · Doublekai的博客</title><meta name="description" content="如何利用Markdown写文章 - DOUBLEKAI"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/touxiang.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://www.doublekai.com/atom.xml" title="Doublekai的博客"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Doublekai的博客" type="application/atom+xml">
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/touxiang.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/doublekai" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/doublekai/" target="_blank" class="nav-list-link">BLOG GARDEN</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">如何利用Markdown写文章</h1><div class="post-info">Jul 16, 2018</div><div class="post-content"><h1 id="Markdown语法说明"><a href="#Markdown语法说明" class="headerlink" title="Markdown语法说明"></a>Markdown语法说明</h1><blockquote>
+<p>首先来个h2标题就叫做Markdown语法说明<br>在给标题下面定义好ul列表作为目录<br>然后是一个h6副标题和一个&gt;引用</p>
+</blockquote>
+<h2 id="简单的标题"><a href="#简单的标题" class="headerlink" title="简单的标题"></a>简单的标题</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># h1</span><br><span class="line">##  h2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>h1 == #    （后面加入一个制表符或空格）<br>h2 == ##<br>…… </p>
+</blockquote>
+<p>接下来看一段文字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[link](https://www.cnblogs.com/doublekai &quot;title&quot;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>   link代表文字 （）包含链接和title</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/doublekai" title="博客园">点击我,能跳转到Doublekai的blog</a></p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>这里是正常的内容<br>接下来是加了 &gt;</p>
+<blockquote>
+<p>  看这就是引用</p>
+<blockquote>
+<p> 我是二级引用</p>
+<blockquote>
+<p>我是三级引用</p>
+<blockquote>
+<p>   我是n层引用</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>插入图片的格式就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![Alt text](图片链接 &quot;optional title&quot;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>   Alt text：图片的Alt标签，用来描述图片的关键词，可以不写。最初的本意是当图片因为某种原因不能被显示时而出现的替代文字，后来又被用于SEO，可以方便搜索引擎根据Alt text里面的关键词搜索到图片。 图片链接：可以是图片的本地地址或者是网址。”optional title”：鼠标悬置于图片上会出现的标题文字，可以不写。</p>
+</blockquote>
+<hr>
+<p><img src="/images/wechat.png" alt="image" title="图片"></p>
+<h2 id="插入代码"><a href="#插入代码" class="headerlink" title="插入代码"></a>插入代码</h2><blockquote>
+<p>  插入代码用三个 ` 来表示<br>接下来是一段定义结构体的代码</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//因为这段时间专升本在学数据结构所以就拿来做实验了</span><br><span class="line">#include &quot;stdio&quot; //代码光亮不错</span><br><span class="line">#define maxlen 100</span><br><span class="line">typedef struct&#123;   //看来对各种语言关键字都懂啊！</span><br><span class="line">    ElemType data[maxlen];</span><br><span class="line">    int listlen;</span><br><span class="line">    </span><br><span class="line">&#125;sqlist;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>   上面是一段数据结构代码 关键字都识别<br>    再来看一下 python</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import re </span><br><span class="line">for i in rang(0,10):</span><br><span class="line">    print i</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>   再来一段html可以看到基本上对语言识别度很好。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;title&gt;&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">	&lt;body&gt;</span><br><span class="line">        在加个脚本语言</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        console.log(&#x27;hello,word&#x27;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<blockquote>
+<p>   下面是整个页面的md</p>
+</blockquote>
+</blockquote>
+<p><img src="/images/t1.png" alt="image"><br><img src="/images/t2.png" alt="image"></p>
+<hr>
+</div></article></div></main><footer><div class="paginator"><a href="/2018/10/25/%C7%B3%CC%B8HTTP/" class="prev">上一篇</a><a href="/2018/07/14/%E6%B5%8B%E8%AF%95/" class="next">下一篇</a></div><div class="copyright"><p>© 2018 - 2021 <a href="https://www.doublekai.com">DOUBLEKAI</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

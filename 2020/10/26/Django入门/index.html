@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Django入门 · Doublekai的博客</title><meta name="description" content="Django入门 - DOUBLEKAI"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/touxiang.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://www.doublekai.com/atom.xml" title="Doublekai的博客"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Doublekai的博客" type="application/atom+xml">
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/touxiang.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/doublekai" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/doublekai/" target="_blank" class="nav-list-link">BLOG GARDEN</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Django入门</h1><div class="post-info">Oct 26, 2020</div><div class="post-content"><h1 id="Django入门笔记"><a href="#Django入门笔记" class="headerlink" title="Django入门笔记"></a>Django入门笔记</h1><h2 id="Django安装-python2-7"><a href="#Django安装-python2-7" class="headerlink" title="Django安装(python2.7)"></a>Django安装(python2.7)</h2><blockquote>
+<p>版本对照<img src="https://github.com/doublekai/user/blob/master/django.png?raw=true" alt="image"></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip --default-timeout=100 install -i https://pypi.mirrors.ustc.edu.cn/simple/ django==1.8</span><br></pre></td></tr></table></figure>
+<h2 id="创建第一个项目"><a href="#创建第一个项目" class="headerlink" title="创建第一个项目"></a>创建第一个项目</h2><blockquote>
+<p>进入提前创建的文件夹</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject HelloWorld</span><br><span class="line"></span><br><span class="line">cd HelloWorld/HelloWorld</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>创建xx.py文件</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from django.http import HttpResponse</span><br><span class="line">def hello(request):</span><br><span class="line">    return HttpResponse(&quot;Hello,world&quot;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>找到urls.py文件这个文件作用是保存路径和函数的对应关系，代码替换</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from django.conf.urls import  url</span><br><span class="line">from . import views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    # Examples:</span><br><span class="line">    # url(r&#x27;^$&#x27;, &#x27;HelloWord.views.home&#x27;, name=&#x27;home&#x27;),</span><br><span class="line">    # url(r&#x27;^blog/&#x27;, include(&#x27;blog.urls&#x27;)),</span><br><span class="line"></span><br><span class="line">    url(r&#x27;^&#x27;, views.hello),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在目录下使用命令,启动服务器自己设定端口</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver  127.0.0.1:8000</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>接下来打开浏览器就能看到</p>
+</blockquote>
+<h2 id="创建MTV项目"><a href="#创建MTV项目" class="headerlink" title="创建MTV项目"></a>创建MTV项目</h2><p>M =model<br>T =view<br>V =controller</p>
+<blockquote>
+<p>同上代码创建项目，在本项目内创建子目录（也就是子功能）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py startapp goods </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在目录下找到settings.py在INSTALLED_APPS中将刚才两个项目添加进去，运行命令（ip也可以不要）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver </span><br></pre></td></tr></table></figure>
+<h2 id="启动mysql"><a href="#启动mysql" class="headerlink" title="启动mysql"></a>启动mysql</h2><blockquote>
+<p>启动服务 输入密码</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net start mysql </span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>我使用的是Navicat for MySQL<br>然后在Djang创建的目录下找到刚才与上面相同的配置文件找到DATABASES修改和添加配置</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x27;ENGINE&#x27;: &#x27;django.db.backends.mysql&#x27;,</span><br><span class="line">       #数据库的名字</span><br><span class="line">       &#x27;NAME&#x27;:&#x27;&#x27; ,</span><br><span class="line">       #数据库地址</span><br><span class="line">       &#x27;HOST&#x27;:&quot;localhost&quot;,</span><br><span class="line">       #端口</span><br><span class="line">       &#x27;PORT&#x27;:&#x27;3306&#x27;,</span><br><span class="line">       #用户名</span><br><span class="line">       &#x27;USER&#x27;:&#x27;root&#x27;,</span><br><span class="line">       #密码</span><br><span class="line">       &#x27;PASSWORD&#x27;:&#x27;root&#x27;,</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在_init__.py中</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">importpy mysql</span><br><span class="line"># 因为本身Django不支持mysql语句</span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在项目中找到模型也就是models.py中创建数据库表以及字段</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line"># Create your models here.</span><br><span class="line">#商品分类表</span><br><span class="line">class GoodsCategory(models.Model):</span><br><span class="line">    #分类的名称 如果类型是字符串类型 max_length必须要</span><br><span class="line">    cat_name=models.CharField(max_length=30)</span><br><span class="line">    #分类的样式</span><br><span class="line">    cat_css = models.CharField(max_length=20)</span><br><span class="line">    #分类的图片  图片路径</span><br><span class="line">    cat_img = models.ImageField(upload_to=&#x27;cag&#x27;)</span><br><span class="line">#商品表</span><br><span class="line">class GoodsInfo(models.Model):</span><br><span class="line">    #商品名字</span><br><span class="line">    goods_name = models.CharField(max_length=100)</span><br><span class="line">    #商品价格 default 默认为0</span><br><span class="line">    goods_price=models.IntegerField(default=0)</span><br><span class="line">    #商品描述</span><br><span class="line">    goods_desc=models.CharField(max_length=2000)</span><br><span class="line">    #商品图片</span><br><span class="line">    goods_img=models.ImageField(upload_to=&#x27;goods&#x27;)</span><br><span class="line">    #商品分类   定义外键</span><br><span class="line">    goods_cag=models.ForeignKey(&#x27;GoodsCategory&#x27;)</span><br><span class="line"></span><br><span class="line">from django.db import models</span><br><span class="line">class OrderInfo(models.Model):</span><br><span class="line">    status=(</span><br><span class="line">        (1,&#x27;待付款&#x27;),</span><br><span class="line">        (2, &#x27;待发货&#x27;),</span><br><span class="line">        (3, &#x27;待收货&#x27;),</span><br><span class="line">        (4, &#x27;已完成&#x27;),</span><br><span class="line">    )</span><br><span class="line">    #订单编号</span><br><span class="line">    order_id =models.CharField(max_length=100)</span><br><span class="line">    #收货地址</span><br><span class="line">    order_address=models.CharField(max_length=100)</span><br><span class="line">    #收货人</span><br><span class="line">    order_recv=models.CharField(max_length=50)</span><br><span class="line">    #联系电话</span><br><span class="line">    order_phone=models.CharField(max_length=11)</span><br><span class="line">    #运费</span><br><span class="line">    order_fee=models.IntegerField(default=10)</span><br><span class="line">    #订单状态</span><br><span class="line">    order_status=models.IntegerField(default=1,choices=status)</span><br><span class="line"></span><br><span class="line">    #订单备注</span><br><span class="line">    order_extra=models.CharField(max_length=200)</span><br><span class="line">#订单商品表</span><br><span class="line">class OrderGoods(models.Model):</span><br><span class="line">    #所属商品 链接外键</span><br><span class="line">    goods_info=models.ForeignKey(&#x27;goods.GoodsInfo&#x27;)</span><br><span class="line">    #商品数量</span><br><span class="line">    goods_num=models.IntegerField</span><br><span class="line">    #商品所属订单  链接外键</span><br><span class="line">    goods_order=models.ForeignKey(&#x27;OrderInfo&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>执行语句 第一句会生成两个文件 两个文件就是创建sql语句 也可以用命令查看 第二句是执行sql语句 这时候会在数据库中看到我们创建的表</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py makemigrations</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<h2 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h2><blockquote>
+<p>1.需要创建我们的templates也就是前端页面</p>
+</blockquote>
+<blockquote>
+<p>2.在settings中TEMPLATES列表中’DIRS’: [os.path.join(BASE_DIR,’templates’)],添加我们的路径</p>
+</blockquote>
+<blockquote>
+<p>3.在views中使用render函数返回页面</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return render(request,&#x27;index.html&#x27;)</span><br></pre></td></tr></table></figure>
+<h2 id="模板传值"><a href="#模板传值" class="headerlink" title="模板传值"></a>模板传值</h2><blockquote>
+<p>使用render方法</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return render(request,&#x27;index.html&#x27;,&#123;&#x27;name&#x27;:&#x27;张三&#x27;,&#x27;age&#x27;:19&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在index使用显示</p>
+</blockquote>
+<h2 id="静态显示"><a href="#静态显示" class="headerlink" title="静态显示"></a>静态显示</h2><blockquote>
+<p>新建静态文件夹 在配置文件中添加静态文件的路径</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">STATICFILES_DIRS=[os.path.join(BASE_DIR,&#x27;static&#x27;)]</span><br></pre></td></tr></table></figure>
+<h2 id="创建主页"><a href="#创建主页" class="headerlink" title="创建主页"></a>创建主页</h2><blockquote>
+<p>最后简单的预览<br><img src="https://github.com/doublekai/user/blob/master/1.png?raw=true" alt="image"></p>
+</blockquote>
+<h4 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h4><p><a target="_blank" rel="noopener" href="https://github.com/doublekai/user/">点击找到Pthoto</a></p>
+<h4 id="GitHub上传"><a href="#GitHub上传" class="headerlink" title="GitHub上传"></a>GitHub上传</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new post Django入门 </span><br><span class="line"></span><br><span class="line">hexo g -d</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre><code>
+</code></pre>
+</div></article></div></main><footer><div class="paginator"><a href="/2019/04/16/Vue.js%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4%E5%92%8C%E4%BD%BF%E7%94%A8/" class="next">下一篇</a></div><div class="copyright"><p>© 2018 - 2021 <a href="https://www.doublekai.com">DOUBLEKAI</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 浅谈HTTP · Doublekai的博客</title><meta name="description" content="浅谈HTTP - DOUBLEKAI"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/touxiang.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://www.doublekai.com/atom.xml" title="Doublekai的博客"><script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Doublekai的博客" type="application/atom+xml">
+</head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/touxiang.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/doublekai" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="https://www.cnblogs.com/doublekai/" target="_blank" class="nav-list-link">BLOG GARDEN</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">浅谈HTTP</h1><div class="post-info">Oct 25, 2018</div><div class="post-content"><h3 id="网络模型"><a href="#网络模型" class="headerlink" title="网络模型"></a>网络模型</h3><blockquote>
+<p>网络模型一般是指 OSI 七层参考模型和 TCP/IP 五层参考模型。（也有分为四层的，物理和数据链路为一层<br>大致参考下图！<br><img src="https://github.com/doublekai/user/blob/master/xiyi.png?raw=true" alt="image"></p>
+</blockquote>
+<blockquote>
+<p> 我们现在常用的是TCP/IP模型又称为TCP/IP协议族，每一层分别有很多协议。而计算机之间的通信要通过这些被别人定义好的协议才能互相访问。</p>
+</blockquote>
+<h4 id="各部分及功能"><a href="#各部分及功能" class="headerlink" title="各部分及功能"></a>各部分及功能</h4><blockquote>
+<p>1、应用层：针对你特定应用的协议<br>2、表示层：设备固定的数据格式和网络标准数据格式之间的转化<br>3、会话层：通信管理，负责建立和单开通信连接，管理传输层 以下分层<br>4、传输层：管理两个节点之间的数据传递。负责可靠传输<br>5、网络层：地址管理和路由选择<br>6、数据链路层：互联设备之间传送和识别数据帧<br>7、物理层：界定连接器和网线之间的规格</p>
+</blockquote>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><blockquote>
+<p>超文本传输协议（HTTP）是一种为分布式的，协作的，超媒体信息系统，它是面向应用层的协议。</p>
+</blockquote>
+<h4 id="总体操作"><a href="#总体操作" class="headerlink" title="总体操作"></a>总体操作</h4><blockquote>
+<p>HTTP 协议是一种请求/响应型的协议。 客户端给服务器发送请求的格式是一个请求方法(request method)，URI，协议版本号，然后紧接着一个包含请求修饰符(modifiers)，客户端信息，和可能的消息主体的类 MIME(MIME-like)消息。服务器对请求端发送响应的格式 是以一个状态行(status line)，其后跟随一个包含服务器信息、实体元信息和可能的实体主体 内容的类 MIME(MIME-like)的消息。其中状态行(status line)包含消息的协议版本号和一 个成功或错误码。<br><img src="//upload-images.jianshu.io/upload_images/2964446-5a35e17f298a48e1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="enter description here"></p>
+</blockquote>
+<h4 id="常见协议参数"><a href="#常见协议参数" class="headerlink" title="常见协议参数"></a>常见协议参数</h4><h5 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h5><blockquote>
+<p>http_URL = “http:” “//“ host [ “:” port ] [ abs_path [ “?” query ]]<br>port不指明默认为80</p>
+</blockquote>
+<h5 id="协议版本号"><a href="#协议版本号" class="headerlink" title="协议版本号"></a>协议版本号</h5><blockquote>
+<p>HTTP 使用一个<code>&lt;major&gt;.&lt;minor&gt;</code>数字模式来指明协议的版本号。（具体请参考《HTTP协议》）</p>
+</blockquote>
+<h5 id="请求（Request）"><a href="#请求（Request）" class="headerlink" title="请求（Request）"></a>请求（Request）</h5><blockquote>
+<p>一个请求消息是从客户端到服务器端的，在消息首行里包含方法，资源指示符，协议版本。<br>Request = Request-Line ; Section 5.1 *(( general-header ; Section 4.5|request-header ; Section 5.3| entity-header ) CRLF) ; Section 7.1CRLF[ message-body ] ; Section 4.3</p>
+</blockquote>
+<h5 id="请求（Response）"><a href="#请求（Response）" class="headerlink" title="请求（Response）"></a>请求（Response）</h5><blockquote>
+<p>接收和解析一个请求消息后，服务器发出一个 HTTP 响应消息。<br>response =Status-Line*(( general-header)|response-header|entity-header)CRLF）|CRLF[ message-body ]</p>
+</blockquote>
+<h5 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h5><blockquote>
+<p>-1xx :报告的   -请求被接收到，继续处理<br>-2xx :成功 (accepted)的动作 。    -被成功地接收(received).<br>-3xx :重发    -为了完成请求必须采取进一步的动作。<br>-4xx :客户端出错        - 请求包括错的语法或不能被满足。<br>-5xx :服务器出错  -服务器无法完成显然有效的请求。<br>常见状态码</p>
+<blockquote>
+<p>200 OK                        //客户端请求成功<br>400 Bad Request               //客户端请求有语法错误，不能被服务器所理解<br>401 Unauthorized              //请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用<br>403 Forbidden                 //服务器收到请求，但是拒绝提供服务<br>404 Not Found                 //请求资源不存在，eg：输入了错误的URL<br>500 Internal Server Error     //服务器发生不可预期的错误<br>503 Server Unavailable        //服务器当前不能处理客户端的请求，一段时间后可能恢复正常</p>
+</blockquote>
+</blockquote>
+<h3 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h3><blockquote>
+<p>根据HTTP标准，HTTP请求可以使用多种请求方法。<br>HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法。<br>HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。<br>GET     请求指定的页面信息，并返回实体主体。<br>HEAD     类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头<br>POST     向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。<br>PUT     从客户端向服务器传送的数据取代指定的文档的内容。<br>DELETE      请求服务器删除指定的页面。<br>CONNECT     HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。<br>OPTIONS     允许客户端查看服务器的性能。<br>TRACE     回显服务器收到的请求，主要用于测试或诊断。</p>
+</blockquote>
+<h3 id="HTTP工作原理"><a href="#HTTP工作原理" class="headerlink" title="HTTP工作原理"></a>HTTP工作原理</h3><blockquote>
+<p>HTTP协议定义Web客户端如何从Web服务器请求Web页面，以及服务器如何把Web页面传送给客户端。HTTP协议采用了请求/响应模型。客户端向服务器发送一个请求报文，请求报文包含请求的方法、URL、协议版本、请求头部和请求数据。服务器以一个状态行作为响应，响应的内容包括协议的版本、成功或者错误代码、服务器信息、响应头部和响应数据。</p>
+</blockquote>
+<h4 id="以下是-HTTP-请求-响应的步骤："><a href="#以下是-HTTP-请求-响应的步骤：" class="headerlink" title="以下是 HTTP 请求/响应的步骤："></a>以下是 HTTP 请求/响应的步骤：</h4><blockquote>
+<p>1、客户端连接到Web服务器<br>一个HTTP客户端，通常是浏览器，与Web服务器的HTTP端口（默认为80）建立一个TCP套接字连接。例如，<a target="_blank" rel="noopener" href="http://www.oakcms.cn./">http://www.oakcms.cn。</a></p>
+</blockquote>
+<blockquote>
+<p>2、发送HTTP请求<br>通过TCP套接字，客户端向Web服务器发送一个文本的请求报文，一个请求报文由请求行、请求头部、空行和请求数据4部分组成。</p>
+</blockquote>
+<blockquote>
+<p>3、服务器接受请求并返回HTTP响应<br>Web服务器解析请求，定位请求资源。服务器将资源复本写到TCP套接字，由客户端读取。一个响应由状态行、响应头部、空行和响应数据4部分组成。</p>
+</blockquote>
+<blockquote>
+<p>4、释放连接TCP连接<br>若connection 模式为close，则服务器主动关闭TCP连接，客户端被动关闭连接，释放TCP连接;若connection 模式为keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;</p>
+</blockquote>
+<blockquote>
+<p>5、客户端浏览器解析HTML内容<br>客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的HTML文档和文档的字符集。客户端浏览器读取响应数据HTML，根据HTML的语法对其进行格式化，并在浏览器窗口中显示。</p>
+</blockquote>
+<blockquote>
+<p>例如：在浏览器地址栏键入URL，按下回车之后会经历以下流程：</p>
+</blockquote>
+<blockquote>
+<p>1、浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址;</p>
+</blockquote>
+<blockquote>
+<p>2、解析出 IP 地址后，根据该 IP 地址和默认端口 80，和服务器建立TCP连接;</p>
+</blockquote>
+<blockquote>
+<p>3、浏览器发出读取文件(URL 中域名后面部分对应的文件)的HTTP 请求，该请求报文作为 TCP 三次握手的第三个报文的数据发送给服务器;</p>
+</blockquote>
+<blockquote>
+<p>4、服务器对浏览器请求作出响应，并把对应的 html 文本发送给浏览器;</p>
+</blockquote>
+<blockquote>
+<p>5、释放 TCP连接;</p>
+</blockquote>
+<blockquote>
+<p>6、浏览器将该 html 文本并显示内容;<br>具体参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ranyonsue/p/5984001.html">enter description here</a><br>和《HTTP协议》。</p>
+</blockquote>
+</div></article></div></main><footer><div class="paginator"><a href="/2019/04/16/Vue.js%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4%E5%92%8C%E4%BD%BF%E7%94%A8/" class="prev">上一篇</a><a href="/2018/07/16/%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Markdown%E5%86%99%E6%96%87%E7%AB%A0/" class="next">下一篇</a></div><div class="copyright"><p>© 2018 - 2021 <a href="https://www.doublekai.com">DOUBLEKAI</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
