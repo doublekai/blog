@@ -6,7 +6,7 @@
   <link href="https://www.doublekai.com/atom.xml" rel="self"/>
   
   <link href="https://www.doublekai.com/"/>
-  <updated>2020-10-26T09:37:52.000Z</updated>
+  <updated>2020-10-29T10:32:50.000Z</updated>
   <id>https://www.doublekai.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://www.doublekai.com/2020/10/29/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/"/>
+    <id>https://www.doublekai.com/2020/10/29/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/</id>
+    <published>2020-10-29T10:32:50.000Z</published>
+    <updated>2020-10-29T10:32:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="什么是多线程和多进程？"><a href="#什么是多线程和多进程？" class="headerlink" title="什么是多线程和多进程？"></a>什么是多线程和多进程？</h3><p><img src="/images/thread.png" alt="image"></p><ul><li>根据上图可以看出来多线程</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;什么是多线程和多进程？&quot;&gt;&lt;a href=&quot;#什么是多线程和多进程？&quot; class=&quot;headerlink&quot; title=&quot;什么是多线程和多进程？&quot;&gt;&lt;/a&gt;什么是多线程和多进程？&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/thread.png&quot; alt=</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Django入门</title>
