@@ -6,7 +6,7 @@
   <link href="https://www.doublekai.com/atom.xml" rel="self"/>
   
   <link href="https://www.doublekai.com/"/>
-  <updated>2021-07-05T06:34:36.427Z</updated>
+  <updated>2021-07-13T06:18:49.878Z</updated>
   <id>https://www.doublekai.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>响应体里的强缓存和协商缓存</title>
+    <link href="https://www.doublekai.com/2021/07/12/%E5%93%8D%E5%BA%94%E4%BD%93%E9%87%8C%E7%9A%84%E5%BC%BA%E7%BC%93%E5%AD%98%E5%92%8C%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/"/>
+    <id>https://www.doublekai.com/2021/07/12/%E5%93%8D%E5%BA%94%E4%BD%93%E9%87%8C%E7%9A%84%E5%BC%BA%E7%BC%93%E5%AD%98%E5%92%8C%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/</id>
+    <published>2021-07-12T01:16:20.000Z</published>
+    <updated>2021-07-13T06:18:49.878Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>缓存无处不在！有浏览器端的缓存， 有服务器端的缓存，有代理服务器的缓存， 有ASP.NET页面缓存，对象缓存。 数据库也有缓存， 等等。<br>缓存的目的：访问速度更快，减少服务器的负担，重复数据不用来来回回的访问</p><h3 id="浏览器的强缓存"><a href="#浏览器的强缓存" class="headerlink" title="浏览器的强缓存"></a>浏览器的强缓存</h3><p>在我们请求网站的时候，一般第一次比较慢，第二次较快，但是当你F5刷新时又跟第一次一样，<br><img src="/images/qiang.jpg" alt="强缓存的响应头"><br>max-age 表示缓存的时间是31536000秒（一年），后面还有两个参数一个 public｜private｜immutable<br>public：客户端和代理服务器都可以缓存该资源；<br>客户端在xxx秒的有效期内，如果有请求该资源的需求的话就直接读取缓存,statu code:200 ，如果用户做了刷新操作，就向服务器发起http请求<br>private：只让客户端可以缓存该资源；代理服务器不缓存<br>客户端在xxx秒内直接读取缓存,statu code:200<br>immutable：客户端在xxx秒的有效期内，如果有请求该资源的需求的话就直接读取缓存,statu code:200 ，即使用户做了刷新操作，也不向服务器发起http请求<br>还有两个参数<br>cache-control: no-cache<br>跳过设置强缓存，但是不妨碍设置协商缓存；一般如果你做了强缓存，只有在强缓存失效了才走协商缓存的，设置了no-cache就不会走强缓存了，每次请求都回询问服务端。</p><p>cache-control: no-store<br>不缓存，这个会让客户端、服务器都不缓存，也就没有所谓的强缓存、协商缓存了。</p><h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>当我们知道网站缓存会有大大提高用户的访问速度等，但是如果用户本地在访问网站时在本地存下缓存，下一次访问会直接在本地不访问服务器，这一段时间正好网站更新了某了东西导致版本不一致怎么办？而这时候去请求服务器的这过程就可以设置协商缓存。这时候，协商缓存就是需要客户端和服务器两端进行交互的。<br><img src="/images/xie.png" alt="协商缓存缓存的响应头"><br>etag：一个hash编码也就是文件等编码一个文件一个不重复<br>last-modified：文件的修改时间，精确到秒<br>也就是说，每次请求返回来 response header 中的 etag和 last-modified，在下次请求时在 request header 就把这两个带上，服务端把你带过来的标识进行对比，然后判断资源是否更改了，如果更改就直接返回新的资源，和更新对应的response header的标识etag、last-modified。如果资源没有变，那就不变etag、last-modified，这时候对客户端来说，每次请求都是要进行协商缓存了，即：</p><p>发请求–&gt;看资源是否过期–&gt;过期–&gt;请求服务器–&gt;服务器对比资源是否真的过期–&gt;没过期–&gt;返回304状态码–&gt;客户端用缓存的老资源。<br>所以协商缓存步骤总结：<br>请求资源时，把用户本地该资源的 etag 同时带到服务端，服务端和最新资源做对比。<br>如果资源没更改，返回304，浏览器读取本地缓存。<br>如果资源有更改，返回200，返回最新的资源。</p><h3 id="设置强缓存与协商缓存"><a href="#设置强缓存与协商缓存" class="headerlink" title="设置强缓存与协商缓存"></a>设置强缓存与协商缓存</h3><p>在服务器上的Header增加强缓存或协商缓存字段<br>如nodejs:<br>res.setHeader(‘max-age’: ‘3600 public’) //强缓存<br>res.setHeader(etag: ‘5c20abbd-e2e8’) //协商缓存<br>res.setHeader(‘last-modified’: Mon, 24 Dec 2018 09:49:49 GMT)</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;缓存&quot;&gt;&lt;a href=&quot;#缓存&quot; class=&quot;headerlink&quot; title=&quot;缓存&quot;&gt;&lt;/a&gt;缓存&lt;/h3&gt;&lt;p&gt;缓存无处不在！有浏览器端的缓存， 有服务器端的缓存，有代理服务器的缓存， 有ASP.NET页面缓存，对象缓存。 数据库也有缓存， 等等。&lt;b</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>双指针使用</title>
