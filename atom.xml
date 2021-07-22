@@ -6,7 +6,7 @@
   <link href="https://www.doublekai.com/atom.xml" rel="self"/>
   
   <link href="https://www.doublekai.com/"/>
-  <updated>2021-07-22T06:57:55.625Z</updated>
+  <updated>2021-07-22T08:46:26.918Z</updated>
   <id>https://www.doublekai.com/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="https://www.doublekai.com/2021/07/22/%E9%98%B2%E7%9B%97%E9%93%BE%E4%B8%8E%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/"/>
     <id>https://www.doublekai.com/2021/07/22/%E9%98%B2%E7%9B%97%E9%93%BE%E4%B8%8E%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/</id>
     <published>2021-07-22T01:52:54.000Z</published>
-    <updated>2021-07-22T06:57:55.625Z</updated>
+    <updated>2021-07-22T08:46:26.918Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="防盗链"><a href="#防盗链" class="headerlink" title="防盗链"></a>防盗链</h3><p>背景：防止别人引用自己服务器上的图片或文件，以致增加服务器流量与压力。<br>看下面两张图片<br><img src="https://i3.autoimg.cn/userscenter/g30/M05/03/AB/120X120_0_q87_autohomecar__ChsEoF8ellKAaQNvAAFG7HUCKjc738.JPG" alt="汽车之家"><br><img src="https://club2.autoimg.cn/album/g24/M04/F7/FF/userphotos/2021/06/08/18/820_Chtk3WC_RKOAAcvlAAeCNyXAZF0326.jpg" alt="汽车之家"></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="防盗链"><a href="#防盗链" class="headerlink" title="防盗链"></a>防盗链</h3><p>背景：防止别人引用自己服务器上的图片或文件，以致增加服务器流量与压力。<br>看下面两张图片第一张是用户头像第二张是该论坛的<br><img src="https://i3.autoimg.cn/userscenter/g30/M05/03/AB/120X120_0_q87_autohomecar__ChsEoF8ellKAaQNvAAFG7HUCKjc738.JPG" alt="汽车之家"><br><img src="https://club2.autoimg.cn/album/g24/M04/F7/FF/userphotos/2021/06/08/18/820_Chtk3WC_RKOAAcvlAAeCNyXAZF0326.jpg" alt="汽车之家"><br>看一下请求<br><img src="/images/403.jpg"><br>可以看到给我们返回异常请求，接下来我们把referer请求参数改成该论坛主页<br><img src="/images/200.png"><br>成功返回！<br>当然如果你想做的更安全，你可以向一些加密数据一样来个动态token！或者强制登录，这样你的网站不能匿名访问会让用户感到不友好，所以用的最多的防盗链就是判定访问来源是否是在白名单里，如果是则返回。</p><h3 id="重放攻击"><a href="#重放攻击" class="headerlink" title="重放攻击"></a>重放攻击</h3><p>百度解释：重放攻击（Replay Attacks）又称重播攻击、回放攻击或新鲜性攻击（Freshness Attacks），是指攻击者发送一个目的主机已接收过的包，来达到欺骗系统的目的，主要用于身份认证过程，破坏认证的正确性。 它是一种攻击类型，这种攻击会不断恶意或欺诈性地重复一个有效的数据传输，重放攻击可以由发起者，也可以由拦截并重发该数据的敌方进行。攻击者利用网络监听或者其他方式盗取认证凭据，之后再把它重新发给认证服务器。从这个解释上理解，加密可以有效防止会话劫持，但是却防止不了重放攻击。重放攻击任何网络通讯过程中都可能发生。重放攻击是计算机世界黑客常用的攻击方式之一，它的书面定义对不了解密码学的人来说比较抽象。<br>大致意思就是用户发一个包访问服务器，被黑客拦截到，然后黑客利用这个包一直访问服务器。<br>如果网站没有防御，基本上都能破解，利用暴力破解登录该服务器（只是时间和运气）总有一天能破解</p><h5 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h5><p>不重复请求方式，意思就是让每次请求都有动态改变参数<br>一级：<br>进入登陆页面时，生成一个随机码（称之为盐值），在客户端页面和session中各保存一份。<br>客户端提交登录请求时，将md5之后的密码与该随机码拼接后，再次执行md5，然后提交（提交的密码=md5(md5(密码明文)+随机码)）。<br>后端接收到登录请求后，将从数据库中查询出的密码与session中的随机码拼接后，md5运算，然后与前端传递的结果进行比较。<br>黑客可以解析js将加密方式获取出来。<br>二级：<br>考虑到密码输入的方便性，好多用户的密码都设置的很短，并且不够复杂，往往是6位数字字母组合，这样的密码md5之后保存到数据库，一旦数据库数据泄露，简单密码的md5结果很容易通过暴力破解的方式给解密出来，何况md5出现了这么多年，可能已经有不少字典了！同时为了方便用户登录的方便性，我们的系统一般不可能要求用户设置很长、很复杂的密码！怎么办？加固定盐值。<br>系统设置一个固定的盐值，该盐值最好足够复杂，如:1qaz2wsx3edc4rfv!@#$%^&amp;qqtrtRTWDFHAJBFHAGFUAHKJFHAJHFJHAJWRFA<br>用户注册、修改密码时，将用户的原始密码与我们的固定盐值拼接，然后做md5运算。<br>传递至后端，保存进数据库（数据库中保存的密码是用户的原始密码拼接固定盐值后，md5运算后的结果）。<br>登录时，将用户的原始密码与我们的固定盐值进行拼接，然后做md5运算，运算后的结果再拼接上我们的随机码，再次md5运算，然后提交。<br>后端接收到登录请求后，将从数据库中查询出的密码与session中的随机码拼接后，md5运算，然后与前端传递的结果进行比较。<br>三级：<br>加登录验证码，可预防人为地暴力登录破解<br>账户锁定，如果用户密码输入错误次数达到一定量后（如6次），则可以锁定该账号（不过该方法应该会被很多用户不满意，现在设置的密码越来越多，总要用户一个个试吧！）</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;h3 id=&quot;防盗链&quot;&gt;&lt;a href=&quot;#防盗链&quot; class=&quot;headerlink&quot; title=&quot;防盗链&quot;&gt;&lt;/a&gt;防盗链&lt;/h3&gt;&lt;p&gt;背景：防止别人引用自己服务器上的图片或文件，以致增加服务器流量与压力。&lt;br&gt;看下面两张图片&lt;br&gt;&lt;img src=&quot;https:</summary>
+    <summary type="html">&lt;h3 id=&quot;防盗链&quot;&gt;&lt;a href=&quot;#防盗链&quot; class=&quot;headerlink&quot; title=&quot;防盗链&quot;&gt;&lt;/a&gt;防盗链&lt;/h3&gt;&lt;p&gt;背景：防止别人引用自己服务器上的图片或文件，以致增加服务器流量与压力。&lt;br&gt;看下面两张图片第一张是用户头像第二张是该论坛的&lt;br&gt;</summary>
       
     
     
