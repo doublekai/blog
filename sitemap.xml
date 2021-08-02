@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.doublekai.com/2021/08/02/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/</loc>
+    
+    <lastmod>2021-08-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.doublekai.com/2021/07/30/inode%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2021-08-02</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.doublekai.com/2021/07/28/DDOS%E6%94%BB%E5%87%BB%E5%92%8C%E9%98%B2%E5%BE%A1/</loc>
+    
+    <lastmod>2021-07-29</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.doublekai.com/2021/07/22/%E9%98%B2%E7%9B%97%E9%93%BE%E4%B8%8E%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/</loc>
     
     <lastmod>2021-07-22</lastmod>
@@ -102,7 +123,7 @@
 
   <url>
     <loc>https://www.doublekai.com/</loc>
-    <lastmod>2021-07-22</lastmod>
+    <lastmod>2021-08-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -110,14 +131,14 @@
   
   <url>
     <loc>https://www.doublekai.com/tags/%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2021-07-22</lastmod>
+    <lastmod>2021-08-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.doublekai.com/tags/%E6%96%87%E7%AB%A0/</loc>
-    <lastmod>2021-07-22</lastmod>
+    <lastmod>2021-08-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
