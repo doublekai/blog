@@ -6,7 +6,7 @@
   <link href="https://www.doublekai.com/atom.xml" rel="self"/>
   
   <link href="https://www.doublekai.com/"/>
-  <updated>2021-08-02T08:49:25.831Z</updated>
+  <updated>2021-08-09T01:43:51.486Z</updated>
   <id>https://www.doublekai.com/</id>
   
   <author>
@@ -17,12 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>同源策略</title>
+    <title>Cookie中的HttpOnly和SameSite属性</title>
+    <link href="https://www.doublekai.com/2021/08/04/Cookie%E4%B8%AD%E7%9A%84HttpOnly%E5%92%8CSameSite%E5%B1%9E%E6%80%A7/"/>
+    <id>https://www.doublekai.com/2021/08/04/Cookie%E4%B8%AD%E7%9A%84HttpOnly%E5%92%8CSameSite%E5%B1%9E%E6%80%A7/</id>
+    <published>2021-08-04T06:41:55.000Z</published>
+    <updated>2021-08-09T01:43:51.486Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="HttpOnly"><a href="#HttpOnly" class="headerlink" title="HttpOnly"></a>HttpOnly</h3><p>作用：如果cookie中设置了HttpOnly属性，那么通过js脚本将无法读取到cookie信息，这样能有效的防止XSS攻击，窃取cookie内容，这样就增加了cookie的安全性，即便是这样，也不要将重要信息存入cookie。XSS全称Cross SiteScript，跨站脚本攻击，是Web程序中常见的漏洞，<a href="https://www.doublekai.com/2021/07/19/%E6%B7%B1%E6%8C%96XSS-%E5%92%8CCSRF/">XSS</a>属于被动式且用于客户端的攻击方式，所以容易被忽略其危害性。其原理是攻击者向有XSS漏洞的网站中输入(传入)恶意的HTML代码，当其它用户浏览该网站时，这段HTML代码会自动执行，从而达到攻击的目的。如，盗取用户Cookie、破坏页面结构、重定向到其它网站等。</p><p>设置完毕后通过js脚本是读不到该cookie的，但使用如下方式可以读取。</p><p>Cookie cookies[]=request.getCookies();  </p><h3 id="SameSite"><a href="#SameSite" class="headerlink" title="SameSite"></a>SameSite</h3><p>作用：防止<a href="https://www.doublekai.com/2021/07/19/%E6%B7%B1%E6%8C%96XSS-%E5%92%8CCSRF/">CSRF</a>攻击</p><h6 id="SameSite属性"><a href="#SameSite属性" class="headerlink" title="SameSite属性"></a>SameSite属性</h6><p>可以设置三个值。<br>Strict<br>Lax<br>None<br><code>Set-Cookie: CookieName=CookieValue; SameSite=Strict｜Lax｜None;</code></p><ol><li>Strict最为严格，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。</li><li>当这些 链接<code>&lt;a href=&quot;...&quot;&gt;&lt;/a&gt; </code>预加载    <code>&lt;link rel=&quot;prerender&quot; href=&quot;...&quot;/&gt;</code>GET 表单    <code>&lt;form method=&quot;GET&quot; action=&quot;...&quot;&gt;    </code>会发送cookie其他的post、ajax、image、iframe都不会发送cookie</li><li>Chrome 计划将Lax变为默认设置。这时，网站可以选择显式关闭SameSite属性，将其设为None。不过，前提是必须同时设置Secure属性（Cookie 只能通过 HTTPS 协议发送），否则无效。<br><code>Set-Cookie: widget_session=&#39;k&#39;; SameSite=None; Secure</code></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;HttpOnly&quot;&gt;&lt;a href=&quot;#HttpOnly&quot; class=&quot;headerlink&quot; title=&quot;HttpOnly&quot;&gt;&lt;/a&gt;HttpOnly&lt;/h3&gt;&lt;p&gt;作用：如果cookie中设置了HttpOnly属性，那么通过js脚本将无法读取到cookie</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>同源策略与CSP</title>
     <link href="https://www.doublekai.com/2021/08/02/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/"/>
     <id>https://www.doublekai.com/2021/08/02/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/</id>
     <published>2021-08-02T08:49:25.000Z</published>
-    <updated>2021-08-02T08:49:25.831Z</updated>
+    <updated>2021-08-04T06:42:52.300Z</updated>
     
+    <content type="html"><![CDATA[<h3 id="同源"><a href="#同源" class="headerlink" title="同源"></a>同源</h3><p>如果两个页面的接口协议域名，端口号都相同，它们具有相同的源</p><h6 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h6><p>同源策略就是浏览器 的一个安全限制，它阻止了不同域之间进行的数据交互</p><h6 id="允许跨源访问"><a href="#允许跨源访问" class="headerlink" title="允许跨源访问"></a>允许跨源访问</h6><p>可以使用CORS来允许跨源访问。CORS是HTTP的一部分，它允许服务端来指定哪些主机可以从这个服务端加载资源</p><h6 id="阻止跨源访问"><a href="#阻止跨源访问" class="headerlink" title="阻止跨源访问"></a>阻止跨源访问</h6><p>利用<a href="https://www.doublekai.com/2021/07/19/%E6%B7%B1%E6%8C%96XSS-%E5%92%8CCSRF/">CSRF</a></p><h3 id="CSP（Content-Security-Policy）内容安全策略"><a href="#CSP（Content-Security-Policy）内容安全策略" class="headerlink" title="CSP（Content-Security-Policy）内容安全策略"></a>CSP（Content-Security-Policy）内容安全策略</h3><p>目的：使网站数据更加安全。<br>在前几篇文章讲到网站可以使用<a href="https://www.doublekai.com/2021/07/19/%E6%B7%B1%E6%8C%96XSS-%E5%92%8CCSRF/">xss</a>脚本攻击网站<br>在http请求头中有个<code>Content-Security-Policy</code>参数<br>######一个网站管理者想要所有内容均来自站点的同一个源 (不包括其子域名)<br><code>Content-Security-Policy: default-src &#39;self&#39;</code><br>######一个网站管理者允许内容来自信任的域名及其子域名 (域名不必须与CSP设置所在的域名相同)<br><code>Content-Security-Policy: default-src &#39;self&#39; *.trusted.com</code><br>######一个网站管理者允许网页应用的用户在他们自己的内容中包含来自任何源的图片, 但是限制音频或视频需从信任的资源提供者(获得)，所有脚本必须从特定主机服务器获取可信的代码.<br><code>Content-Security-Policy: default-src &#39;self&#39;; img-src *; media-src media1.com media2.com; script-src userscripts.example.com</code><br>######一个线上银行网站的管理者想要确保网站的所有内容都要通过SSL方式获取，以避免攻击者窃听用户发出的请求。<br><code>Content-Security-Policy: default-src https://onlinebanking.jumbobank.com</code><br>######一个在线邮箱的管理者想要允许在邮件里包含HTML，同样图片允许从任何地方加载，但不允许JavaScript或者其他潜在的危险内容(从任意位置加载)。<br><code>Content-Security-Policy: default-src &#39;self&#39; *.mailsite.com; img-src *</code><br>#####下面是一个网站的css请求头<br><img src="/images/csp1.png" alt="csp"><br><code>script-src &#39;self&#39;</code>:定义js文件的过滤策略<br><code>blob: filesystem:;</code>允许blobfilesystem协议内的url<br><code>object-src &#39;self&#39;</code>定义页面插件的过滤策略,如 <object>, <embed> 或者<applet>等元素<code>blob: filesystem:;</code>允许blobfilesystem协议内的url<br>#####下面是收集的一些参数和值</p><p><img src="/images/csp2.png" alt="csp"><br><img src="/images/csp3.png" alt="csp"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;同源&quot;&gt;&lt;a href=&quot;#同源&quot; class=&quot;headerlink&quot; title=&quot;同源&quot;&gt;&lt;/a&gt;同源&lt;/h3&gt;&lt;p&gt;如果两个页面的接口协议域名，端口号都相同，它们具有相同的源&lt;/p&gt;
+&lt;h6 id=&quot;同源策略&quot;&gt;&lt;a href=&quot;#同源策略&quot; class=</summary>
+      
     
     
     
