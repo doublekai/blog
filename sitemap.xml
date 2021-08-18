@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.doublekai.com/2021/08/18/nginx%E9%AB%98%E6%80%A7%E8%83%BD%E5%8E%9F%E5%9B%A0/</loc>
+    
+    <lastmod>2021-08-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.doublekai.com/2021/08/18/nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AE%97%E6%B3%95/</loc>
+    
+    <lastmod>2021-08-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.doublekai.com/2021/08/17/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%8E%B7%E5%8F%96%E6%B5%8F%E8%A7%88%E5%99%A8%E7%94%A8%E6%88%B7%E7%9C%9F%E5%AE%9EIP/</loc>
+    
+    <lastmod>2021-08-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.doublekai.com/2021/08/09/HTTP%E5%8D%8F%E8%AE%AE%E4%B8%AD%E7%9A%84OPTIONS/</loc>
+    
+    <lastmod>2021-08-17</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.doublekai.com/2021/08/04/Cookie%E4%B8%AD%E7%9A%84HttpOnly%E5%92%8CSameSite%E5%B1%9E%E6%80%A7/</loc>
     
     <lastmod>2021-08-09</lastmod>
@@ -130,7 +158,7 @@
 
   <url>
     <loc>https://www.doublekai.com/</loc>
-    <lastmod>2021-08-09</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -138,14 +166,14 @@
   
   <url>
     <loc>https://www.doublekai.com/tags/%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2021-08-09</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://www.doublekai.com/tags/%E6%96%87%E7%AB%A0/</loc>
-    <lastmod>2021-08-09</lastmod>
+    <lastmod>2021-08-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
